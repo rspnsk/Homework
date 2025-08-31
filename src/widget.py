@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 from masks import get_mask_account, get_mask_card_number
 
@@ -15,7 +16,11 @@ def mask_account_card(s: str) -> str:
         return "Некорректный ввод"
 
 
-def get_date(data: str) -> str:
-    data_1 = data[:10]
-    data_2 = data_1.split('-')
-    return f"{data_2[2]}.{data_2[1]}.{data_2[0]}"
+# iso_date это исходная дата в формате ISO 8601
+def get_date(iso_date: str) -> str:
+    "функция get_date возвращает строку с датой в формате ДД.ММ.ГГГГ"
+    # парсим строку в объект datetime
+    parsed_date = datetime.strptime(iso_date, "%Y-%m-%dT%H:%M:%S.%f")
+    # Преобразуем дату в нужный формат
+    formatted_date = parsed_date.strftime("%d.%m.%Y")
+    return (formatted_date)  # Вывод: "ДД.ММ.ГГГГ"
