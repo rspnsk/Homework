@@ -21,3 +21,4 @@ def sort_by_date(my_list_dict: list, descending: bool = True) -> list:
         return datetime.fromisoformat(transaction['date'])
     sort_my_list_dict = sorted(my_list_dict, key=get_date, reverse=descending)
     return sort_my_list_dict
+# дополнительный комментарий
