@@ -1,0 +1,69 @@
+# Исключаем байт-код Python (__pycache__, *.pyc, *.pyo, *.pyd)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Исключаем метаданные Python (.ipynb_checkpoints/, .mypy_cache/)
+.ipynb_checkpoints/
+.mypy_cache/
+.dm_py_lsp_server.json
+.pylint.d/
+.cache/
+
+# Исключаем файлы IDE (JetBrains IDEA, VSCode, Sublime Text и прочие)
+.idea/
+.project
+.workspace
+.vscode/*
+.settings/
+
+# Исключаем артефакты сборки и упаковки
+dist/
+build/
+.egg-info/
+*.egg
+*.egg-info/
+*.whl
+*.tar.gz
+*.zip
+
+# Исключаем журналы и логи
+logs/
+log/*.log
+*.log
+
+# Исключаем файлы Docker
+Dockerfile*
+docker-compose.*
+
+# Исключаем файлы Jupyter Notebook
+notebooks/*~
+
+# Исключение виртуальных сред
+.env
+.venv/
+venv/
+virtualenv/
+
+# Исключение тестов и временных файлов
+.coverage
+.nox/
+.htmlcov/
+pytest_cache/
+
+# Другие общие исключения
+*.bak
+*.tmp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+.desktop
+.vscode/
+node_modules/
+npm-debug.log*
+
+# Исключаем документацию в определенных форматах
+docs/build/
+doc/_build/
+.sphinxerr
