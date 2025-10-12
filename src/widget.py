@@ -1,26 +1,25 @@
-import re
 from datetime import datetime
 
-from masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(s: str) -> str:
-    "обрабатывает информацию о картах И счетах"
-    "возвращает строку с замаскированным номером карты или счета"
-    account_number = re.split(r'(\d+)', s)
-    if len(account_number[1]) == 16:
-        return account_number[0] + " " + get_mask_card_number(account_number[1])
-    elif len(account_number[1]) == 20:
-        return account_number[0] + " " + get_mask_account(account_number[1])
+    """обрабатывает информацию о картах И счетах
+    возвращает строку с замаскированным номером карты или счета"""
+    letters = ''.join(c for c in s if c.isalpha())
+    numbers = ''.join(c for c in s if c.isdigit())
+    if len(numbers) == 16:
+        return letters + ' ' + get_mask_card_number(numbers)
+    elif len(numbers) == 20:
+        return letters + ' ' + get_mask_account(numbers)
     else:
         return "Некорректный ввод"
 
 
-# iso_date это исходная дата в формате ISO 8601
-def get_date(iso_date: str) -> str:
-    "функция get_date возвращает строку с датой в формате ДД.ММ.ГГГГ"
-    # парсим строку в объект datetime
-    parsed_date = datetime.strptime(iso_date, "%Y-%m-%dT%H:%M:%S.%f")
-    # Преобразуем дату в нужный формат
-    formatted_date = parsed_date.strftime("%d.%m.%Y")
-    return (formatted_date)  # Вывод: "ДД.ММ.ГГГГ"
+def get_date(date_string: str) -> str:
+    """Преобразует дату из формата "2024-03-11T02:26:18.671407" в формат "11.03.2024"."""
+    try:
+        dt = datetime.fromisoformat(date_string)
+        return dt.strftime("%d.%m.%Y")
+    except ValueError:
+        return "Некорректный формат даты"
