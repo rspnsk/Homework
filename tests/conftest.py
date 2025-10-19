@@ -1,5 +1,5 @@
-from typing import Any
-from typing import List, Dict
+from typing import Any, Dict, List
+
 import pytest
 
 
