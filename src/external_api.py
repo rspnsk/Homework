@@ -24,4 +24,4 @@ def get_convert_sum(transaction: dict) -> float:
     else:
         response = requests.get(url, headers=headers, params=payload)
         result = response.json()
-        return  float(result["result"])
+        return float(result["result"])
