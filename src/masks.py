@@ -1,7 +1,6 @@
 import logging
 import os
 
-
 print(os.getcwd())
 
 # Создание и получение именованного логера

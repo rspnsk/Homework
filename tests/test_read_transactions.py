@@ -1,7 +1,8 @@
-from unittest.mock import patch, mock_open
-import pandas as pd
-from src.read_transactions import read_file_excel, read_file_csv
+from unittest.mock import mock_open, patch
 
+import pandas as pd
+
+from src.read_transactions import read_file_csv, read_file_excel
 
 # тест для функции read_file_excel
 
