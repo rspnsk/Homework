@@ -34,6 +34,41 @@ def test_read_file_excel(mock_read_excel):
     assert result == expected_result
 
 
+# тест для функции read_file_excel если файл пустой
+
+@patch('pandas.read_excel')
+def test_read_file_excel_empty_file(mock_read_excel):
+    # Подготавливаем пустой DataFrame
+    mock_df = pd.DataFrame(columns=['id', 'state'])
+    mock_read_excel.return_value = mock_df
+
+    # Ждём пустой результат
+    expected_result = []
+
+    # Читаем несуществующие данные
+    result = read_file_excel('dummy_path.xlsx')
+
+    # Утверждаем, что результат действительно пустой
+    assert result == expected_result
+
+
+# тест для функции read_file_excel если файл не существует
+
+@patch('pandas.read_excel')
+def test_read_file_excel_file_not_found(mock_read_excel):
+    # Настроим так, чтобы попытка чтения приводила к ошибке FileNotFoundError
+    mock_read_excel.side_effect = FileNotFoundError()
+
+    # Ожидаем пустой результат
+    expected_result = []
+
+    # Пробуем считать несуществующий файл
+    result = read_file_excel('nonexistent_file.xlsx')
+
+    # Проверяем, что результат пуст
+    assert result == expected_result
+
+
 # тест для функции read_file_csv
 
 @patch('builtins.open', new_callable=mock_open,
