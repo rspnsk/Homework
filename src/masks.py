@@ -1,9 +1,12 @@
 import logging
+import os
+
+print(os.getcwd())
 
 # Создание и получение именованного логера
 logger = logging.getLogger('masks')
 # Создаем хендлер для вывода в файл
-file_handler = logging.FileHandler('../logs/masks.log', mode='w', encoding='utf-8')
+file_handler = logging.FileHandler('C:/Users/Юрий/PycharmProjects/Homework/logs/masks.log', mode='w', encoding='utf-8')
 # Создаем форматер для форматирования вывода используемого хендлера.
 file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 # устанавливаем созданный форматер для хендлера
