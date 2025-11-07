@@ -8,7 +8,7 @@ from src.widget import get_date, mask_account_card
 if __name__ == '__main__':
 
     def main():
-        """отвечает за основную логику проекта и связывает функциональности между собой"""
+        """Отвечает за основную логику проекта и связывает функциональности между собой"""
         transaction_data = []
         while True:
             print(
@@ -45,8 +45,12 @@ if __name__ == '__main__':
         while True:
             users_input_1 = input("Введите статус:\n").strip().upper()
             if users_input_1 in ["EXECUTED", "CANCELED", "PENDING"]:
+                print(f"Программа: Операции отфильтрованы по статусу {users_input_1}")
                 break
-            print(f"Программа: Статус операции {users_input} недоступен. ")
+            print(f"Программа: Статус операции {users_input_1} недоступен.\n"
+                   "Программа: Введите статус, по которому необходимо выполнить фильтрацию.\n"
+                   "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING")
+
 
         # Фильтрация транзакций по статусу
         transaction_data = filter_by_state(transaction_data, state=users_input_1)
@@ -55,7 +59,7 @@ if __name__ == '__main__':
         users_input_date = input("Программа: Отсортировать операции по дате? "
                                  "Да/Нет, или любую клавишу\n").strip().upper()
         if users_input_date in ['ДА', 'YES']:
-            users_input_data = input("Программа: Отсортировать по возрастанию или по убыванию?\n").strip().lower()
+            users_input_data = input("Программа: Отсортировать по возрастанию/по убыванию?\n").strip().lower()
             if users_input_data == 'по возрастанию':
                 transaction_data = sort_by_date(transaction_data, descending=False)
             elif users_input_data == 'по убыванию':
@@ -77,22 +81,26 @@ if __name__ == '__main__':
             users_input_descript_1 = input(f"Программа: Введите слово для фильтрации.\n "
                                            f"Возможные варианты{filter_word}\n")
             transaction_data = process_bank_search(transaction_data, users_input_descript_1)
-            print(f"Программа: Распечатываю итоговый список транзакций\n\n"
-                  f"Программа: \nВсего банковских операций в выборке: {len(transaction_data)}")
 
-            # Вывод результатов
-        for i in transaction_data:
-            d_i = i.get("date")
-            data_i = get_date(d_i)
-            from_i = i.get("from", '')
-            to_i = i.get("to", '')
-            if users_input == 1:
-                currency_i = i.get("operationAmount", {}).get("currency", {}).get("code")
-                amount_i = i.get("operationAmount", {}).get("amount")
-            else:
-                currency_i = i.get("currency_code")
-                amount_i = i.get("amount")
-            print(f"""
+        # Вывод результатов
+        if len(transaction_data) == 0:
+            print("Программа: Не найдено ни одной транзакции, "
+                  "подходящей под ваши условия фильтрации")
+        else:
+            print(f"Программа: Распечатываю итоговый список транзакций\n"
+                  f"Программа: Всего банковских операций в выборке: {len(transaction_data)}")
+            for i in transaction_data:
+                d_i = i.get("date")
+                data_i = get_date(d_i)
+                from_i = i.get("from", '')
+                to_i = i.get("to", '')
+                if users_input == 1:
+                    currency_i = i.get("operationAmount", {}).get("currency", {}).get("code")
+                    amount_i = i.get("operationAmount", {}).get("amount")
+                else:
+                    currency_i = i.get("currency_code")
+                    amount_i = i.get("amount")
+                print(f"""
                             {data_i} {i.get('description')}
                             {mask_account_card(from_i)} - > {mask_account_card(to_i)}
                             Сумма: {amount_i}  {currency_i}
