@@ -52,7 +52,8 @@ if __name__ == '__main__':
         transaction_data = filter_by_state(transaction_data, state=users_input_1)
 
         # Сортировка по дате
-        users_input_date = input("Программа: Отсортировать операции по дате? Да/Нет\n").strip().upper()
+        users_input_date = input("Программа: Отсортировать операции по дате? "
+                                 "Да/Нет, или любую клавишу\n").strip().upper()
         if users_input_date in ['ДА', 'YES']:
             users_input_data = input("Программа: Отсортировать по возрастанию или по убыванию?\n").strip().lower()
             if users_input_data == 'по возрастанию':
@@ -61,14 +62,16 @@ if __name__ == '__main__':
                 transaction_data = sort_by_date(transaction_data, descending=True)
 
         # Фильтрация транзакций по валюте
-        users_input_currency = input("Программа: Выводить только рублевые транзакции? Да/Нет\n").strip().upper()
+        users_input_currency = input("Программа: Выводить только рублевые транзакции? "
+                                     "Да/Нет, или любую клавишу\n").strip().upper()
         if users_input_currency in ['ДА', 'YES']:
             if users_input == 1:
                 transaction_data = filter_by_currency_json(transaction_data)
             elif users_input in [2, 3]:
                 transaction_data = filter_by_currency_csv(transaction_data)
 
-        users_input_descript = input("Отфильтровать список транзакций по определенному слову в описании? Да/Нет\n").strip().upper()
+        users_input_descript = input("Отфильтровать список транзакций по определенному слову в описании? "
+                                     "Да/Нет, или любую клавишу\n").strip().upper()
         if users_input_descript in ['ДА', 'YES']:
             filter_word = extract_values_transactions(transaction_data, key='description')
             users_input_descript_1 = input(f"Программа: Введите слово для фильтрации.\n "
