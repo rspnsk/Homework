@@ -37,7 +37,7 @@ def get_mask_card_number(number_card: str) -> str:
     return " ".join([mask_number_card[i : i + 4] for i in range(0, len(mask_number_card), 4)])
 
 
-print(get_mask_card_number('1234567891231236'))
+# print(get_mask_card_number('1234567891231236'))
 
 
 def get_mask_account(account_number: str) -> str:
@@ -52,6 +52,3 @@ def get_mask_account(account_number: str) -> str:
     logger.info("Успешно создана маска карты")
     mask_account = f"**{account_number[-4:]}"
     return mask_account
-
-
-print(get_mask_account("ж"))

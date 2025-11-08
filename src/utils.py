@@ -29,4 +29,6 @@ def read_transactions(path: str) -> list:
         return []
 
 
-print(read_transactions('../data/operations.json'))
+# list_of_dicts = read_transactions('../data/operations.json')
+# for dict_ in list_of_dicts:
+#     pprint(dict_)

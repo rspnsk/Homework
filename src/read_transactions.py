@@ -40,7 +40,7 @@ def read_file_excel(file_path: str) -> list[dict[str, str]]:
 
 
 # if __name__ == "__main__":
-#     for transaction in read_file_csv("../data/transactions.csv"):
-#         print(transaction)
-
-# print(read_file_excel('../data/transactions_excel.xlsx'))
+#    for transaction in read_file_csv("../data/transactions.csv"):
+#        print(transaction)
+#    #  for transaction in read_file_excel("../data/transactions_excel.xlsx"):
+#    #     print(transaction)

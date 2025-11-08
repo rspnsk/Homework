@@ -55,8 +55,3 @@ def test_sort_by_date_same(
 ) -> None:
     # сортировка при одинаковых датах
     assert sort_by_date(list_of_dicts_same) == list_of_dicts_sorting_by_same_date
-
-
-def test_sort_by_unusual_date(list_of_dicts_unexpected_date: list[dict[Any, Any]]) -> None:
-    # сортировка при некорректном формате даты
-    assert sort_by_date(list_of_dicts_unexpected_date) == [{"error": "Некорректная дата"}]

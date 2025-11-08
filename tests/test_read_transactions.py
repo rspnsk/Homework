@@ -1,11 +1,9 @@
 from unittest.mock import mock_open, patch
-
 import pandas as pd
-
 from src.read_transactions import read_file_csv, read_file_excel
 
-# тест для функции read_file_excel
 
+# тест для функции read_file_excel
 @patch('pandas.read_excel')
 def test_read_file_excel(mock_read_excel):
     # Создаём DataFrame, который будет возвращать mock
